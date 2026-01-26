@@ -588,11 +588,12 @@ p {
         <div class="logo-square">NSA</div> <span>NexSimAlgo</span>
       </a>
       <div class="nav-links">
-		<a href="#" class="nav-item" onclick="loadProducts()">Products</a>	
-  		<a href="#services" class="nav-item">Services</a>
-  		<a href="#work" class="nav-item">Work</a>
-  		<a href="#contact" class="btn btn-primary">Book Intro Call</a>
+  		<a href="#" class="nav-item" onclick="openProducts(event)">Products</a>  
+  		<a href="#services" class="nav-item" onclick="scrollToSection(event, 'services')">Services</a>
+  		<a href="#work" class="nav-item" onclick="scrollToSection(event, 'work')">Work</a>
+  		<a href="#contact" class="btn btn-primary" onclick="scrollToSection(event, 'contact')">Book Intro Call</a>
 	  </div>
+
 
     </div>
   </header>
@@ -964,56 +965,58 @@ p {
   </footer>
   
 
-  <script>
-	function copyProjectMeta() {
-  		const text = document.querySelector(".code-meta").innerText.trim();
-  		navigator.clipboard.writeText(text)
-    			.then(() => {
-      				alert("Copied to clipboard!");
-    		})
-    		.catch(err => {
-      			console.error("Clipboard error:", err);
-      			alert("Copy failed.");
-   		});
-	}
+ <script>
+const viewer = document.getElementById("embedded-viewer");
+const frame = document.getElementById("dashboardFrame");
+const closeBtn = document.querySelector(".close-btn");
 
-function loadProducts() {
-  const viewer = document.getElementById("embedded-viewer");
-  const frame = document.getElementById("dashboardFrame");
-  const closeBtn = document.querySelector(".close-btn");
-
+// Open products overlay WITHOUT close button
+function openProducts(event) {
+  event.preventDefault(); // prevent default anchor behavior
   frame.src = "products.html";
   viewer.style.display = "block";
+  closeBtn.style.display = "none"; // hide Close button
   document.body.style.overflow = "hidden";
-
-  closeBtn.style.display = "none"; // Hide Close button for products
 }
 
+// Open dashboards overlay WITH close button
 function loadDashboard(page) {
-  const viewer = document.getElementById("embedded-viewer");
-  const frame = document.getElementById("dashboardFrame");
-  const closeBtn = document.querySelector(".close-btn");
-
   frame.src = page;
   viewer.style.display = "block";
+  closeBtn.style.display = "flex"; // show Close button
   document.body.style.overflow = "hidden";
-
-  closeBtn.style.display = "flex"; // Show Close button for dashboards
 }
 
+// Close overlay
 function closeDashboard() {
-  const viewer = document.getElementById("embedded-viewer");
-  const frame = document.getElementById("dashboardFrame");
-
   viewer.style.display = "none";
   frame.src = "";
   document.body.style.overflow = "";
 }
 
-   </script>
+// Smooth scroll to section
+function scrollToSection(event, sectionId) {
+  event.preventDefault(); // prevent default anchor behavior
+  closeDashboard(); // close overlay if open
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+// Copy project meta
+function copyProjectMeta() {
+  const text = document.querySelector(".code-meta").innerText.trim();
+  navigator.clipboard.writeText(text)
+    .then(() => alert("Copied to clipboard!"))
+    .catch(err => { console.error(err); alert("Copy failed."); });
+}
+</script>
+
 
 </body>
 </html>
+
 
 
 
