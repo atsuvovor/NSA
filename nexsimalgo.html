@@ -600,24 +600,6 @@ p {
 
   <main>
     <div class="container">
-
-	   <!-- FIXED DASHBOARD OVERLAY -->
-		<div id="embedded-viewer">
-
-  			<div class="viewer-header">
-    			<button
-      				class="btn btn-outline close-btn"
-      					onclick="closeDashboard()">
-      					Close Dashboard
-    			</button>
-  			</div>
-
-  		   <iframe id="dashboardFrame"></iframe>
-
-	 	</div>
-
-
-
       <!-- HERO -->
       <section class="hero">
         <div class="eyebrow">Now Booking Contracts for 2026</div>
@@ -745,14 +727,21 @@ p {
     </div>
    </section>
    
- <!-- UI/UX Cards Section -->
+<!-- FIXED DASHBOARD OVERLAY -->
+<div id="embedded-viewer">
+  <div class="viewer-header">
+    <button class="btn btn-outline close-btn" onclick="closeDashboard()">
+      Close Dashboard
+    </button>
+  </div>
+  <iframe id="dashboardFrame"></iframe>
+</div>
 
- 
+<!-- UI/UX Cards Section -->
 <section class="dashboard-section">
   <h2>UI/UX Highlights</h2>
   <p>Human-centered dashboards, app screens, and enterprise UX improvements.</p>
   <div class="dash-grid">
-     
     <div class="dashboard-box">
       <img src="images/UI_UX_enhancements.png" alt="UI/UX Enhancements">
       <div class="dashboard-title">Dashboard Redesign</div>
@@ -776,214 +765,163 @@ p {
       <div class="dashboard-title">Data Storytelling</div>
       <div class="dashboard-desc">Dynamic visualizations convey clear, actionable data narratives.</div>
     </div>
-
-   </div>
+  </div>
 </section>
 
 <section class="dashboard-section">
-   <div class="dash-grid">
+  <div class="dash-grid">
+    <div class="dashboard-box">
+      <img src="images/responsive_design.png" alt="Responsive Design">
+      <div class="dashboard-title">Responsive Design</div>
+      <div class="dashboard-desc">Dashboards adapt smoothly across devices for optimal viewing.</div>
+    </div>
 
-        <!-- NEW CARD 1 -->
-        <div class="dashboard-box">
-          <img src="images/responsive_design.png" alt="Responsive Design">
-          <div class="dashboard-title">Responsive Design</div>
-          <div class="dashboard-desc">Dashboards adapt smoothly across devices for optimal viewing.</div>
-        </div>
+    <div class="dashboard-box">
+      <img src="images/microinteraction.png" alt="Microinteractions">
+      <div class="dashboard-title">Microinteractions</div>
+      <div class="dashboard-desc">Subtle animations enhance engagement and guide user interaction.</div>
+    </div>
 
-        <!-- NEW CARD 2 -->
-        <div class="dashboard-box">
-          <img src="images/microinteraction.png" alt="Microinteractions">
-          <div class="dashboard-title">Microinteractions</div>
-          <div class="dashboard-desc">Subtle animations enhance engagement and guide user interaction.</div>
-        </div>
-
-        <!-- NEW CARD 3 -->
-        <div class="dashboard-box">
-          <img src="images/accessibility.png" alt="Accessibility">
-          <div class="dashboard-title">Accessibility</div>
-          <div class="dashboard-desc">Inclusive design ensures clarity, readability, and usability for all.</div>
-        </div>
-
-      </div>
+    <div class="dashboard-box">
+      <img src="images/accessibility.png" alt="Accessibility">
+      <div class="dashboard-title">Accessibility</div>
+      <div class="dashboard-desc">Inclusive design ensures clarity, readability, and usability for all.</div>
+    </div>
+  </div>
 </section>
 
-<!-- end UI/UX Cards Section -->  
+<!-- WORK / Dashboards -->
+<section id="work" class="case-strip">
+  <section class="dashboard-section">
+    <h2>Interactive Dashboards</h2>
+    <p>Click on any dashboard below to explore interactive data insights.</p>
 
-   <!-- WORK -->
-   <section id="work" class="case-strip">
-      <!-- new -->
-      <section class="dashboard-section">
-        <h2>Interactive Dashboards</h2>
-        <p>Click on any dashboard below to explore interactive data insights.</p>
+    <div class="dash-grid">
 
-    	<div class="dash-grid">
+      <div class="dashboard-box" onclick="loadDashboard('CybersecurityKeyTerms.html')">
+        <img src="images/cyber_threat_key_terms.png" alt="Cybersecurity Key Terms">
+        <div class="dashboard-title"><h3>Cybersecurity Key Terms</h3></div>
+        <div class="dashboard-desc">Explore key terms and their contextual connections across threat intelligence documents.</div>
+        <h4>Tableau</h4>
+      </div>
 
-    	   <div class="dashboard-box" onclick="loadDashboard('CybersecurityKeyTerms.html')">
-              <img src="images/cyber_threat_key_terms.png" alt="Cybersecurity Key Terms">
-              <div class="dashboard-title">
-                 <h3>Cybersecurity Key Terms</h3>
-              </div>
-             <div class="dashboard-desc">Explore key terms and their contextual connections across threat intelligence documents.</div>
-             <h4>Tableau</h4>
-           </div>
+      <div class="dashboard-box" onclick="loadDashboard('NumberofFileAccessedTracker.html')">
+        <img src="https://public.tableau.com/static/images/Cy/CyberThreatInsight-NumberoffileAccessDashboard/NumberofFileAccessedTracker/1.png" alt="Number of File Accessed Tracker">
+        <div class="dashboard-title"><h3>Number of File Accessed Tracker</h3></div>
+        <div class="dashboard-desc">Monitor abnormal spikes in file access behavior across users and systems.</div>
+        <h4>Tableau</h4>
+      </div>
 
-           <div class="dashboard-box" onclick="loadDashboard('NumberofFileAccessedTracker.html')">
-               <img src="https://public.tableau.com/static/images/Cy/CyberThreatInsight-NumberoffileAccessDashboard/NumberofFileAccessedTracker/1.png" alt="Number of File Accessed Tracker">
-               <div class="dashboard-title">
-	           <h3>Number of File Accessed Tracker</h3>
-               </div>
-            <div class="dashboard-desc">Monitor abnormal spikes in file access behavior across users and systems.</div>
-                 <h4>Tableau</h4>
-            </div>
+      <div class="dashboard-box" onclick="loadDashboard('LoginAttemptsAnalytics.html')">
+        <img src="images/login_attenpts.png" alt="Login Attempts Analytics">
+        <div class="dashboard-title"><h3>Login Attempts Analytics</h3></div>
+        <div class="dashboard-desc">Analyze successful and failed login attempts to detect brute-force patterns.</div>
+        <h4>Tableau</h4>
+      </div>
 
-            <div class="dashboard-box" onclick="loadDashboard('LoginAttemptsAnalytics.html')">
-                <img src="images/login_attenpts.png" alt="Login Attempts Analytics">
-                <div class="dashboard-title">
-                  <h3>Login Attempts Analytics</h3>
-               </div>
-               <div class="dashboard-desc">Analyze successful and failed login attempts to detect brute-force patterns.</div>
-                   <h4>Tableau</h4>
-             </div>
+      <div class="dashboard-box" onclick="loadDashboard('ThreatInsightReporting.html')">
+        <img src="https://public.tableau.com/static/images/Cy/CyberThreatInsightDashboard/IncidentSummaryandTrends/1.png" alt="Threat Insight Reporting">
+        <div class="dashboard-title"><h3>Threat Insight Reporting</h3></div>
+        <div class="dashboard-desc">Review incident summaries and trend analyses for proactive security monitoring.</div>
+        <h4>Tableau</h4>
+      </div>
 
-          	 <div class="dashboard-box" onclick="loadDashboard('ThreatInsightReporting.html')">
-               <img src="https://public.tableau.com/static/images/Cy/CyberThreatInsightDashboard/IncidentSummaryandTrends/1.png" alt="Threat Insight Reporting">
-               <div class="dashboard-title">
-                    <h3>Threat Insight Reporting</h3>
-               </div>
-               <div class="dashboard-desc">Review incident summaries and trend analyses for proactive security monitoring.</div>
-                    <h4>Tableau</h4>
-               </div>
+      <div class="dashboard-box" onclick="window.open('https://atsu-vovor-ofac-sdn-risk-dashboard.streamlit.app/', '_blank')">
+        <img src="images/sanctions_dashboard.png" alt="OFAC SDN Risk Dashboard">
+        <div class="dashboard-title"><h3>OFAC SDN Risk Dashboard</h3></div>
+        <div class="dashboard-desc">Real-time risk scoring and sanctions insights built using Python & Streamlit.</div>
+        <h4>Streamlit & Python</h4>
+      </div>
 
-           <div class="dashboard-box" onclick="window.open('https://atsu-vovor-ofac-sdn-risk-dashboard.streamlit.app/', '_blank')">
-               <img src="images/sanctions_dashboard.png" alt="OFAC SDN Risk Dashboard">
-               <div class="dashboard-title">
-                  <h3>OFAC SDN Risk Dashboard</h3>
-               </div>
-              <div class="dashboard-desc">Real-time risk scoring and sanctions insights built using Python & Streamlit.</div>
-              <h4>Streamlit & Python</h4>
-           </div>
+      <div class="dashboard-box" onclick="window.open('https://atsuvovor.github.io/power_bi_projects/cyber_attack_insight_dashboard.html', '_blank')">
+        <img src="images/screenshot_Power_BI.png" alt="Power BI Cyber Attack Insight">
+        <div class="dashboard-title"><h3>Cyber Attack Insight Dashboard</h3></div>
+        <div class="dashboard-desc">Explore threat events, patterns, and high-risk activities using Power BI visual analytics.</div>
+        <h4>M & DAX Programming</h4>
+      </div>
 
-         <div class="dashboard-box" onclick="window.open('https://atsuvovor.github.io/power_bi_projects/cyber_attack_insight_dashboard.html', '_blank')">
-              <img src="images/screenshot_Power_BI.png" alt="Power BI Cyber Attack Insight">
-              <div class="dashboard-title">
-                 <h3>Cyber Attack Insight Dashboard<h/3>
-              </div>
-             <div class="dashboard-desc">Explore threat events, patterns, and high-risk activities using Power BI visual analytics.</div>
-                 <h4>M & DAX Programming</h4>
-          </div>
-
-          <div class="dashboard-box"  onclick="window.open('https://atsuvovor.github.io/MS_Excel_Power_Pivot_Power_Query_Projects/ofac_sdn_sanctions_dashboard.html', '_blank')">
-             <img src="images/Excel_screen_shot.png" alt="OFAC SDN Global Risk Monitor Dashboard">
-             <div class="dashboard-title">
-               <h3>Excel - OFAC SDN Global Risk Monitor</h3>
-             </div>
-            <div class="dashboard-desc">Global sanctions monitoring dashboard powered by Excel, Power Query, and Power Pivot.</div>
-            <h4>M & DAX Programming</h4>
-         </div>
-
-       </div>
-      </section>
-   </section>
- 
-      <!-- end New -->
-
-      <!-- CONTACT -->
-      <section id="contact" class="contact-section" style="margin-top:18px">
-  	  <h2 style="text-align:left; margin-bottom:24px;">Contact & Next Steps</h3>
-
-  	  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
-
-    	 <!-- Discuss Your Project Card -->
-    	<div class="card">
-      	    <h4>Let's discuss your project</h4>
-      	    <p style="color:var(--text-muted)">
-                Tell me about your data challenges, reporting pain points, or a goal you want to achieve. 
-	        I’ll respond with a short plan and a clear pricing estimate.
-             </p>
-
-             <p style="color:var(--text-muted)">
-                  <strong>I offer a free discovery call to scope your project. No commitment required.</strong>
-             </p>
-             
-             <div style="margin-top:14px">
-        	<a class="btn btn-primary" href="mailto:atsu.vovor@bell.net">Start conversation</a>
-      	     </div>
-
-    	</div>
-
-    	<!-- Quick Brief Card -->
-    	   <div class="card">
-      		<h4 style="margin-bottom:8px">Quick brief (copy/paste)</h4>
-               <div class="paragraph-background">
-      		  <p class="code-meta">
-                        Project name: 
-        		<br/>Budget range: 
-        		<br/>Timeline: 
-        		<br/>Primary data sources: 
-        		<br/>Key stakeholders: 
-      		   </p>
-                 </div>
- 		   <button onclick="copyProjectMeta()" class="btn btn-outline" style="margin-top:12px;">
-  				Copy Details
-		</button>
-      		<p style="color:var(--text-muted); margin-top:10px; font-size:13px;">
-                     Paste this when you email me — it helps me prepare a targeted response and proposal.
-                </p>
-    	  </div>
-              
-             <!-- Contact Box -->
-    	     <div class="contact-card">
-    		<h4 class="contact-name">Atsu Vovor, MMAI</h4>
-    		   <p class="contact-title">Consultant, Data & Analytics</p>
-
-    		   <p class="contact-line">📞 <a href="tel:+14167958246">416-795-8246</a></p>
-    		   <div class="copy-email" onclick="navigator.clipboard.writeText('atsu.vovor@bell.net'); alert('Email copied!');">
-        		<span>atsu.vovor@bell.net</span>
-        		<span style="font-size:0.8rem; color:var(--primary); text-transform:uppercase;">Copy</span>
-      		   </div>
-
-
-    		   <p class="contact-links">
-        	     🔗 
-        	     <a href="https://www.linkedin.com/in/atsu-vovor" target="_blank">LinkedIn</a> |
-        	     <a href="https://github.com/atsuvovor" target="_blank">GitHub Portfolio</a> |
-        	     <a href="https://public.tableau.com/app/profile/atsu.vovor" target="_blank">Tableau Portfolio</a>
-    		   </p>
-
-    		   <p class="contact-location">📍 Mississauga, ON</p> 
-		</div>
-
-  	    </div>
-	</section>
-
+      <div class="dashboard-box" onclick="window.open('https://atsuvovor.github.io/MS_Excel_Power_Pivot_Power_Query_Projects/ofac_sdn_sanctions_dashboard.html', '_blank')">
+        <img src="images/Excel_screen_shot.png" alt="OFAC SDN Global Risk Monitor Dashboard">
+        <div class="dashboard-title"><h3>Excel - OFAC SDN Global Risk Monitor</h3></div>
+        <div class="dashboard-desc">Global sanctions monitoring dashboard powered by Excel, Power Query, and Power Pivot.</div>
+        <h4>M & DAX Programming</h4>
+      </div>
 
     </div>
-  </main>
+  </section>
+</section>
 
-  <footer>
-    © 2025 Atsu Vovor — Data & Analytics Consultant
-  </footer>
-  
+<!-- CONTACT SECTION -->
+<section id="contact" class="contact-section" style="margin-top:18px">
+  <h2 style="text-align:left; margin-bottom:24px;">Contact & Next Steps</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:16px;">
+    
+    <!-- DISCUSS PROJECT -->
+    <div class="card">
+      <h4>Let's discuss your project</h4>
+      <p style="color:var(--text-muted)">Tell me about your data challenges, reporting pain points, or a goal you want to achieve. I’ll respond with a short plan and a clear pricing estimate.</p>
+      <p style="color:var(--text-muted)"><strong>I offer a free discovery call to scope your project. No commitment required.</strong></p>
+      <div style="margin-top:14px">
+        <a class="btn btn-primary" href="mailto:atsu.vovor@bell.net">Start conversation</a>
+      </div>
+    </div>
 
- <script>
+    <!-- QUICK BRIEF -->
+    <div class="card">
+      <h4 style="margin-bottom:8px">Quick brief (copy/paste)</h4>
+      <div class="paragraph-background">
+        <p class="code-meta">
+          Project name: <br/>Budget range: <br/>Timeline: <br/>Primary data sources: <br/>Key stakeholders:
+        </p>
+      </div>
+      <button onclick="copyProjectMeta()" class="btn btn-outline" style="margin-top:12px;">Copy Details</button>
+      <p style="color:var(--text-muted); margin-top:10px; font-size:13px;">Paste this when you email me — it helps me prepare a targeted response and proposal.</p>
+    </div>
+
+    <!-- CONTACT CARD -->
+    <div class="contact-card">
+      <h4 class="contact-name">Atsu Vovor, MMAI</h4>
+      <p class="contact-title">Consultant, Data & Analytics</p>
+      <p class="contact-line">📞 <a href="tel:+14167958246">416-795-8246</a></p>
+      <div class="copy-email" onclick="navigator.clipboard.writeText('atsu.vovor@bell.net'); alert('Email copied!');">
+        <span>atsu.vovor@bell.net</span>
+        <span style="font-size:0.8rem; color:var(--primary); text-transform:uppercase;">Copy</span>
+      </div>
+      <p class="contact-links">
+        🔗 <a href="https://www.linkedin.com/in/atsu-vovor" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/atsuvovor" target="_blank">GitHub Portfolio</a> |
+        <a href="https://public.tableau.com/app/profile/atsu.vovor" target="_blank">Tableau Portfolio</a>
+      </p>
+      <p class="contact-location">📍 Mississauga, ON</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2025 Atsu Vovor — Data & Analytics Consultant
+</footer>
+
+<!-- SCRIPT -->
+<script>
 const viewer = document.getElementById("embedded-viewer");
 const frame = document.getElementById("dashboardFrame");
 const closeBtn = document.querySelector(".close-btn");
 
-// Open products overlay WITHOUT close button
+// Products overlay WITHOUT close button
 function openProducts(event) {
-  event.preventDefault(); // prevent default anchor behavior
+  event.preventDefault();
   frame.src = "products.html";
   viewer.style.display = "block";
-  closeBtn.style.display = "none"; // hide Close button
+  closeBtn.style.display = "none";
   document.body.style.overflow = "hidden";
 }
 
-// Open dashboards overlay WITH close button
+// Dashboards overlay WITH close button
 function loadDashboard(page) {
   frame.src = page;
   viewer.style.display = "block";
-  closeBtn.style.display = "flex"; // show Close button
+  closeBtn.style.display = "flex";
   document.body.style.overflow = "hidden";
 }
 
@@ -996,10 +934,10 @@ function closeDashboard() {
 
 // Smooth scroll to section
 function scrollToSection(event, sectionId) {
-  event.preventDefault(); // prevent default anchor behavior
+  event.preventDefault();
   closeDashboard(); // close overlay if open
   const section = document.getElementById(sectionId);
-  if (section) {
+  if(section) {
     section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
@@ -1014,8 +952,10 @@ function copyProjectMeta() {
 </script>
 
 
+
 </body>
 </html>
+
 
 
 
