@@ -550,17 +550,19 @@ p {
    DASHBOARD OVERLAY (FIXED UNDER HEADER)
 =============================================== */
 #embedded-viewer {
-  position: fixed;
+  position: absolute;
   top: 72px;                 /* SAME AS HEADER HEIGHT */
   left: 0;
   width: 100%;
-  height: calc(100vh - 72px);
+  height: auto;
   background: #f8fafc;
   z-index: 999;
   display: none;
+  padding-bottom: 20px;
+  box-sizing: border-box;
 }
 
-/* Close button bar */
+/* Close button header */
 .viewer-header {
   display: flex;
   justify-content: flex-end;
@@ -572,7 +574,7 @@ p {
 /* Iframe fills remaining space */
 #dashboardFrame {
   width: 100%;
-  height: calc(100% - 56px);
+  height: 80vh;
   border: none;
 }
 
@@ -914,7 +916,7 @@ function openProducts(event) {
   frame.src = "products.html";
   viewer.style.display = "block";
   closeBtn.style.display = "none";
-  document.body.style.overflow = "hidden";
+  // document.body.style.overflow = "hidden";
 }
 
 // Dashboards overlay WITH close button
@@ -922,14 +924,14 @@ function loadDashboard(page) {
   frame.src = page;
   viewer.style.display = "block";
   closeBtn.style.display = "flex";
-  document.body.style.overflow = "hidden";
+  
 }
 
 // Close overlay
 function closeDashboard() {
   viewer.style.display = "none";
   frame.src = "";
-  document.body.style.overflow = "";
+  
 }
 
 // Smooth scroll to section
@@ -955,17 +957,3 @@ function copyProjectMeta() {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
