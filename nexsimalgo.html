@@ -37,6 +37,7 @@
       --max-width: 1200px;
     }
 
+  
     * { box-sizing: border-box; margin:0; padding:0; }
     body {
       background: var(--bg-body);
@@ -46,6 +47,17 @@
       line-height: 1.6;
     }
     a { text-decoration: none; color: inherit; }
+
+
+	  /* Hide scrollbar visually but keep scrolling */
+html {
+  scrollbar-width: none;        /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 
     .container {
       width: 100%;
@@ -577,8 +589,16 @@ p {
   height: 80vh;
   border: none;
 }
+iframe {
+  scrollbar-width: none;
+}
 
-  </style>
+iframe::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+</style>
 </head>
 
 <body>
@@ -969,5 +989,6 @@ function copyProjectMeta() {
 
 </body>
 </html>
+
 
 
