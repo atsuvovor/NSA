@@ -588,7 +588,7 @@ p {
         <div class="logo-square">NSA</div> <span>NexSimAlgo</span>
       </a>
       <div class="nav-links">
-		<a href="#" onclick="loadDashboard('products.html')">Products</a>	
+		<a href="#" class="nav-item" onclick="loadProducts()">Products</a>	
   		<a href="#services" class="nav-item">Services</a>
   		<a href="#work" class="nav-item">Work</a>
   		<a href="#contact" class="btn btn-primary">Book Intro Call</a>
@@ -977,6 +977,16 @@ p {
    		});
 	}
 
+
+  <script>
+  function loadProducts() {
+    const viewer = document.getElementById("embedded-viewer");
+    const frame = document.getElementById("dashboardFrame");
+
+    frame.src = "products.html";
+    viewer.style.display = "block";
+    document.body.style.overflow = "hidden";
+  }
   function loadDashboard(page) {
     const viewer = document.getElementById("embedded-viewer");
     const frame = document.getElementById("dashboardFrame");
@@ -999,6 +1009,7 @@ p {
 
 </body>
 </html>
+
 
 
 
