@@ -605,7 +605,7 @@ p {
 
   			<div class="viewer-header">
     			<button
-      				class="btn btn-outline"
+      				class="btn btn-outline close-btn"
       					onclick="closeDashboard()">
       					Close Dashboard
     			</button>
@@ -977,37 +977,44 @@ p {
    		});
 	}
 
-  function loadProducts() {
-    const viewer = document.getElementById("embedded-viewer");
-    const frame = document.getElementById("dashboardFrame");
+function loadProducts() {
+  const viewer = document.getElementById("embedded-viewer");
+  const frame = document.getElementById("dashboardFrame");
+  const closeBtn = document.querySelector(".close-btn");
 
-    frame.src = "products.html";
-    viewer.style.display = "block";
-    document.body.style.overflow = "hidden";
-  }
-	  
-  function loadDashboard(page) {
-    const viewer = document.getElementById("embedded-viewer");
-    const frame = document.getElementById("dashboardFrame");
+  frame.src = "products.html";
+  viewer.style.display = "block";
+  document.body.style.overflow = "hidden";
 
-    frame.src = page;
-    viewer.style.display = "block";
-    document.body.style.overflow = "hidden"; // lock background scroll
-  }
+  closeBtn.style.display = "none"; // Hide Close button for products
+}
 
-  function closeDashboard() {
-    const viewer = document.getElementById("embedded-viewer");
-    const frame = document.getElementById("dashboardFrame");
+function loadDashboard(page) {
+  const viewer = document.getElementById("embedded-viewer");
+  const frame = document.getElementById("dashboardFrame");
+  const closeBtn = document.querySelector(".close-btn");
 
-    viewer.style.display = "none";
-    frame.src = "";
-    document.body.style.overflow = ""; // restore scroll
-  }
+  frame.src = page;
+  viewer.style.display = "block";
+  document.body.style.overflow = "hidden";
+
+  closeBtn.style.display = "flex"; // Show Close button for dashboards
+}
+
+function closeDashboard() {
+  const viewer = document.getElementById("embedded-viewer");
+  const frame = document.getElementById("dashboardFrame");
+
+  viewer.style.display = "none";
+  frame.src = "";
+  document.body.style.overflow = "";
+}
 
    </script>
 
 </body>
 </html>
+
 
 
 
