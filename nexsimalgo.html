@@ -568,6 +568,36 @@ p {
   <main>
     <div class="container">
 
+	   <!-- Embedded Dashboard Viewer -->
+		<section id="embedded-viewer" style="display:none; margin-top:20px;">
+  		  <div class="container">
+
+    		<!-- Close button -->
+    		<div style="display:flex; justify-content:flex-end; margin-bottom:12px;">
+      		<button
+        		onclick="document.getElementById('embedded-viewer').style.display='none'"
+        		class="btn btn-outline">
+        		Close Dashboard
+      		</button>
+    	  </div>
+
+    	  <!-- Dashboard iframe -->
+    	  <iframe
+	         id="dashboardFrame"
+              src=""
+      		  style="
+        	    width:100%;
+        		height:85vh;
+        		border:none;
+        		border-radius:16px;
+        		box-shadow:0 8px 24px rgba(0,0,0,0.12);
+      		"
+      		loading="lazy">
+    	  </iframe>
+
+  		</div>
+	  </section>
+
       <!-- HERO -->
       <section class="hero">
         <div class="eyebrow">Now Booking Contracts for 2026</div>
@@ -768,7 +798,7 @@ p {
 
     	<div class="dash-grid">
 
-    	   <div class="dashboard-box" onclick="window.location.href='CybersecurityKeyTerms.html'">
+    	   <div class="dashboard-box" onclick="loadDashboard('CybersecurityKeyTerms.html')">
               <img src="images/cyber_threat_key_terms.png" alt="Cybersecurity Key Terms">
               <div class="dashboard-title">
                  <h3>Cybersecurity Key Terms</h3>
@@ -777,7 +807,7 @@ p {
              <h4>Tableau</h4>
            </div>
 
-           <div class="dashboard-box" onclick="window.location.href='NumberofFileAccessedTracker.html'">
+           <div class="dashboard-box" onclick="loadDashboard('NumberofFileAccessedTracker.html')">
                <img src="https://public.tableau.com/static/images/Cy/CyberThreatInsight-NumberoffileAccessDashboard/NumberofFileAccessedTracker/1.png" alt="Number of File Accessed Tracker">
                <div class="dashboard-title">
 	           <h3>Number of File Accessed Tracker</h3>
@@ -786,7 +816,7 @@ p {
                  <h4>Tableau</h4>
             </div>
 
-            <div class="dashboard-box" onclick="window.location.href='LoginAttemptsAnalytics.html'">
+            <div class="dashboard-box" onclick="loadDashboard('LoginAttemptsAnalytics.html')">
                 <img src="images/login_attenpts.png" alt="Login Attempts Analytics">
                 <div class="dashboard-title">
                   <h3>Login Attempts Analytics</h3>
@@ -795,7 +825,7 @@ p {
                    <h4>Tableau</h4>
              </div>
 
-          <div class="dashboard-box" onclick="window.location.href='ThreatInsightReporting.html'">
+          	 <div class="dashboard-box" onclick="loadDashboard('ThreatInsightReporting.html')">
                <img src="https://public.tableau.com/static/images/Cy/CyberThreatInsightDashboard/IncidentSummaryandTrends/1.png" alt="Threat Insight Reporting">
                <div class="dashboard-title">
                     <h3>Threat Insight Reporting</h3>
@@ -927,11 +957,27 @@ p {
       			alert("Copy failed.");
    		});
 	}
+
+	
+  	function loadDashboard(page) {
+    	const viewer = document.getElementById("embedded-viewer");
+    	const frame = document.getElementById("dashboardFrame");
+
+		frame.src = "";
+		setTimeout(() => frame.src = page, 50);
+
+    	frame.src = page;
+    	viewer.style.display = "block";
+
+    	viewer.scrollIntoView({ behavior: "smooth", block: "start" });
+  	}
+
    </script>
 
 
 </body>
 </html>
+
 
 
 
