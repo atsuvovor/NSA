@@ -52,16 +52,9 @@
     }
     a { text-decoration: none; color: inherit; }
 
-
-	  /* Hide scrollbar visually but keep scrolling */
-html {
-  scrollbar-width: none;        /* Firefox */
-}
-
-body::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
+	html, body {
+      overflow-y: auto;
+    }
 
     .container {
       width: 100%;
@@ -588,10 +581,13 @@ p {
 }
 
 /* Iframe fills remaining space */
+#contentFrame,
 #dashboardFrame {
   width: 100%;
   height: 80vh;
   border: none;
+  overflow: auto;
+  scrollbar-width: none;
 }
 iframe {
   scrollbar-width: none;
@@ -601,7 +597,12 @@ iframe::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
-
+/* Chrome, Edge, Safari */
+#contentFrame::-webkit-scrollbar,
+#dashboardFrame::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 </style>
 </head>
 
@@ -993,6 +994,7 @@ function copyProjectMeta() {
 
 </body>
 </html>
+
 
 
 
