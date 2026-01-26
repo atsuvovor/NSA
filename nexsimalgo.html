@@ -590,17 +590,26 @@ p {
         <div class="logo-square">NSA</div> <span>NexSimAlgo</span>
       </a>
       <div class="nav-links">
-  		<a href="#" class="nav-item" onclick="openProducts(event)">Products</a>  
-  		<a href="#services" class="nav-item" onclick="scrollToSection(event, 'services')">Services</a>
-  		<a href="#work" class="nav-item" onclick="scrollToSection(event, 'work')">Work</a>
-  		<a href="#contact" class="btn btn-primary" onclick="scrollToSection(event, 'contact')">Book Intro Call</a>
+  		<a href="#" class="nav-item" onclick="openProducts(event)">Products</a>
+		<a href="#services" class="nav-item" onclick="scrollToSection(event,'services')">Services</a>
+		<a href="#work" class="nav-item" onclick="scrollToSection(event,'work')">Work</a>
+<		a href="#contact" class="btn btn-primary" onclick="scrollToSection(event,'contact')">Book Intro Call</a>
+
 	  </div>
 
 
     </div>
   </header>
+  <!-- DYNAMIC CONTENT AREA (UNDER HEADER) -->
+  <section id="dynamic-content" style="display:none;">
+  	<iframe
+    	id="contentFrame"
+    	src=""
+    	style="width:100%; border:none; min-height:100vh;">
+  	</iframe>
+   </section>
 
-  <main>
+  <main id="home-content">
     <div class="container">
       <!-- HERO -->
       <section class="hero">
@@ -906,44 +915,47 @@ p {
 
 <!-- SCRIPT -->
 <script>
-const viewer = document.getElementById("embedded-viewer");
-const frame = document.getElementById("dashboardFrame");
-const closeBtn = document.querySelector(".close-btn");
+const dynamicContent = document.getElementById("dynamic-content");
+const frame = document.getElementById("contentFrame");
+const homeContent = document.getElementById("home-content");
 
-// Products overlay WITHOUT close button
+/* Open Products */
 function openProducts(event) {
   event.preventDefault();
   frame.src = "products.html";
-  viewer.style.display = "block";
-  closeBtn.style.display = "none";
-  // document.body.style.overflow = "hidden";
+  dynamicContent.style.display = "block";
+  homeContent.style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Dashboards overlay WITH close button
+/* Open Dashboard */
 function loadDashboard(page) {
   frame.src = page;
-  viewer.style.display = "block";
-  closeBtn.style.display = "flex";
-  
+  dynamicContent.style.display = "block";
+  homeContent.style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
+/* Restore homepage */
+function scrollToSection(event, sectionId) {
+  event.preventDefault();
+  dynamicContent.style.display = "none";
+  frame.src = "";
+  homeContent.style.display = "block";
+
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+	
 // Close overlay
 function closeDashboard() {
   viewer.style.display = "none";
   frame.src = "";
   
 }
-
-// Smooth scroll to section
-function scrollToSection(event, sectionId) {
-  event.preventDefault();
-  closeDashboard(); // close overlay if open
-  const section = document.getElementById(sectionId);
-  if(section) {
-    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
 // Copy project meta
 function copyProjectMeta() {
   const text = document.querySelector(".code-meta").innerText.trim();
@@ -957,3 +969,4 @@ function copyProjectMeta() {
 
 </body>
 </html>
+
