@@ -1,9 +1,7 @@
 # NexSimAlgo
-NexSimAlgo is a next-generation analytics and AI simulation company unifying real-world data, synthetic data generation, GenAI insights, and risk simulation engines into a single intelligent decision-support platform.
-
-
+NexSimAlgo is a next-generation analytics and AI simulation company unifying real-world data, synthetic data generation, GenAI insights, and risk simulation engines into a single intelligent decision-support platform.  
 <a
-  href="https://atsuvovor.github.io/NSA/nexsimalgo.html"
+  href="https://atsuvovor.github.io/CyberThreat_Insight/cyber_security_analytics.html"
   target="_blank"
   style="
     display: inline-block;
@@ -22,4 +20,3 @@ NexSimAlgo is a next-generation analytics and AI simulation company unifying rea
 >
   🚀 Open in the browser
 </a>
-
