@@ -73,12 +73,20 @@
       z-index: 100;
     }
 
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 72px;
-    }
+	.nav-container {
+  		display: flex;
+  	flex-direction: column;     /* 👈 ALWAYS stack */
+  	align-items: flex-start;
+  	gap: 10px;
+ 	 padding: 12px 0;
+	}
+	@media (min-width: 769px) {
+  		.nav-container {
+    	padding: 8px 0;
+    	gap: 6px;
+  		}
+	}
+
 
     .brand {
       display: flex;
@@ -102,11 +110,14 @@
       letter-spacing:-0.5px;
     }
 
-    .nav-links {
-      display:flex;
-      align-items:center;
-      gap:28px;
-    }
+   .nav-links {
+  	display: flex;
+  	align-items: center;
+  	gap: 28px;
+  	width: 100%;                /* 👈 full row */
+  	flex-wrap: wrap;
+	}
+
 
     .nav-item {
       font-weight:500;
