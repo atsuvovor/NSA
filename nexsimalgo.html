@@ -116,7 +116,7 @@
 
     .nav-item:hover { color:var(--primary); }
 
-	/* =========================
+/* =========================
    NAV DROPDOWN (ABOUT)
 ========================= */
 .dropdown {
@@ -125,7 +125,7 @@
 
 .dropdown-menu {
   position: absolute;
-  top: top: calc(72px - 8px);
+  top: calc(72px - 8px);
   left: 0;
   background: white;
   border: 1px solid var(--border);
@@ -136,6 +136,20 @@
   flex-direction: column;
   padding: 8px 0;
   z-index: 1000;
+}
+
+/* for iPhone positions*/
+@media (max-width: 768px) {
+
+  .dropdown-menu {
+    position: relative;   /* break out of absolute positioning */
+    top: 0;               /* reset desktop value */
+    left: 0;
+    box-shadow: none;
+    border: none;
+    padding: 6px 0 6px 12px;
+  }
+
 }
 
 .dropdown-menu a {
@@ -154,6 +168,13 @@
 .dropdown:hover .dropdown-menu {
   display: flex;
 }
+
+@media (max-width: 768px) {
+  .dropdown-menu {
+    display: flex;
+  }
+}
+
 
 
     /* BUTTONS */
@@ -590,12 +611,28 @@ p {
       background:white;
     }
 
-    @media (max-width:768px) {
-  		.nav-links {
-    		display: flex;
-    		gap: 14px;
- 		 }
-	}
+   @media (max-width: 768px) {
+
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;              
+    padding: 12px 0;
+    gap: 10px;
+  }
+
+  .brand {
+    align-self: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+}
+
 
 
  /* ============================================
