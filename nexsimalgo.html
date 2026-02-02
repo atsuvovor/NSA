@@ -116,6 +116,46 @@
 
     .nav-item:hover { color:var(--primary); }
 
+	/* =========================
+   NAV DROPDOWN (ABOUT)
+========================= */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-md);
+  min-width: 180px;
+  display: none;
+  flex-direction: column;
+  padding: 8px 0;
+  z-index: 200;
+}
+
+.dropdown-menu a {
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.dropdown-menu a:hover {
+  background: #f1f5f9;
+  color: var(--primary);
+}
+
+/* Show on hover */
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+
     /* BUTTONS */
     .btn {
       padding:10px 20px;
@@ -618,6 +658,14 @@ iframe::-webkit-scrollbar {
   		<a href="#" class="nav-item" onclick="openProducts(event)">Products</a>
 		<a href="#services" class="nav-item" onclick="scrollToSection(event,'services')">Services</a>
 		<a href="#work" class="nav-item" onclick="scrollToSection(event,'work')">Work</a>
+		<!-- HEADER -->
+		<a href="#" class="nav-item">About ▾</a>
+  		<div class="dropdown-menu">
+    	   <a href="#" onclick="openAbout(event, 'about_company.html')">Company</a>
+    	   <a href="#" onclick="openAbout(event, 'about_founder.html')">Founder</a>
+           <a href="#" onclick="openAbout(event, 'about_vision.html')">Vision</a>
+         </div>
+		<!--  -->
 		<a href="#contact" class="btn btn-primary" onclick="scrollToSection(event,'contact')">Book Intro Call</a>
 
 	  </div>
@@ -955,6 +1003,15 @@ function openProducts(event) {
 
 /* Open Dashboard */
 function loadDashboard(page) {
+  frame.src = page;
+  dynamicContent.style.display = "block";
+  homeContent.style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+/* About */
+
+function openAbout(event, page) {
+  event.preventDefault();
   frame.src = page;
   dynamicContent.style.display = "block";
   homeContent.style.display = "none";
