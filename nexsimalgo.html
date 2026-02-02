@@ -135,7 +135,7 @@
   display: none;
   flex-direction: column;
   padding: 8px 0;
-  z-index: 200;
+  z-index: 1000;
 }
 
 .dropdown-menu a {
@@ -659,12 +659,15 @@ iframe::-webkit-scrollbar {
 		<a href="#services" class="nav-item" onclick="scrollToSection(event,'services')">Services</a>
 		<a href="#work" class="nav-item" onclick="scrollToSection(event,'work')">Work</a>
 		<!-- HEADER -->
-		<a href="#" class="nav-item">About ▾</a>
-  		<div class="dropdown-menu">
-    	   <a href="#" onclick="openAbout(event, 'about_company.html')">Company</a>
-    	   <a href="#" onclick="openAbout(event, 'about_founder.html')">Founder</a>
-           <a href="#" onclick="openAbout(event, 'about_vision.html')">Vision</a>
-         </div>
+		<div class="nav-item dropdown">
+  		   <a href="#" class="nav-item">About ▾</a>
+  			 <div class="dropdown-menu">
+    	        <a href="#" onclick="openAbout(event, 'about_company.html')">Company</a>
+    	        <a href="#" onclick="openAbout(event, 'about_founder.html')">Founder</a>
+    	        <a href="#" onclick="openAbout(event, 'about_vision.html')">Vision</a>
+  			</div>
+		</div>
+
 		<!--  -->
 		<a href="#contact" class="btn btn-primary" onclick="scrollToSection(event,'contact')">Book Intro Call</a>
 
