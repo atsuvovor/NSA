@@ -118,7 +118,16 @@
   	flex-wrap: wrap;
 	}
 
-
+	@media (min-width: 769px) {  
+   	   .nav-links {
+  	      display: flex;
+  		  align-items: center;
+  		  gap: 12px;
+  		  width: 100%;                /* 👈 full row */
+  	      flex-wrap: wrap;
+	  }
+	}
+	
     .nav-item {
       font-weight:500;
       font-size:0.95rem;
