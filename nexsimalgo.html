@@ -279,6 +279,61 @@
   }
 }
 
+/* =========================
+   HEADER ROWS
+========================= */
+
+.nav-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ROW 1 */
+.nav-top {
+  justify-content: space-between;
+}
+
+/* ROW 2 */
+.nav-bottom {
+  justify-content: flex-end;
+}
+
+/* Ensure nav-links align right */
+.nav-bottom .nav-links {
+  width: auto;
+  justify-content: flex-end;
+}
+
+/* SEARCH sizing */
+.nav-top .nav-search {
+  min-width: 220px;
+}
+
+/* =========================
+   MOBILE STACKING
+========================= */
+@media (max-width: 768px) {
+
+  .nav-top {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .nav-search {
+    width: 100%;
+  }
+
+  .nav-bottom {
+    justify-content: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
 
 
     /* BUTTONS */
@@ -793,37 +848,53 @@ iframe::-webkit-scrollbar {
 <body>
 
   <!-- HEADER -->
-  <header>
-    <div class="container nav-container">
+<header>
+  <div class="container nav-container">
+
+    <!-- ROW 1 -->
+    <div class="nav-row nav-top">
       <a href="#" class="brand">
-        <div class="logo-square">NSA</div> <span>NexSimAlgo</span>
+        <div class="logo-square">NSA</div>
+        <span>NexSimAlgo</span>
       </a>
-      <div class="nav-links">
-  		<a href="#" class="nav-item" onclick="openProducts(event)">Products</a>
-		<a href="#services" class="nav-item" onclick="scrollToSection(event,'services')">Services</a>
-		<a href="#work" class="nav-item" onclick="scrollToSection(event,'work')">Work</a>
-		<!-- HEADER -->
-		<div class="nav-item dropdown">
-  		   <a href="#" class="nav-item">About ▾</a>
-  			 <div class="dropdown-menu">
-    	        <a href="#" onclick="openAbout(event, 'about_company.html')">Company</a>
-    	        <a href="#" onclick="openAbout(event, 'about_founder.html')">Founder</a>
-    	        <a href="#" onclick="openAbout(event, 'about_vision.html')">Vision</a>
-  			</div>
-		</div>
 
-		<!-- 🔍 Search -->
-  		<div class="nav-search">
-    		<input type="search" id="siteSearch" placeholder="🔍 Search…" aria-label="Search site"/>
-  		</div>
-		<!--  -->
-		<a href="#contact" class="btn btn-primary" onclick="scrollToSection(event,'contact')">Book Intro Call</a>
-
-	  </div>
-
-
+      <!-- 🔍 Search (TOP RIGHT) -->
+      <div class="nav-search">
+        <input
+          type="search"
+          id="siteSearch"
+          placeholder="🔍 Search…"
+          aria-label="Search site"
+        />
+      </div>
     </div>
-  </header>
+
+    <!-- ROW 2 -->
+    <div class="nav-row nav-bottom">
+      <div class="nav-links">
+        <a href="#" class="nav-item" onclick="openProducts(event)">Products</a>
+        <a href="#services" class="nav-item" onclick="scrollToSection(event,'services')">Services</a>
+        <a href="#work" class="nav-item" onclick="scrollToSection(event,'work')">Work</a>
+
+        <div class="nav-item dropdown">
+          <a href="#" class="nav-item">About ▾</a>
+          <div class="dropdown-menu">
+            <a href="#" onclick="openAbout(event, 'about_company.html')">Company</a>
+            <a href="#" onclick="openAbout(event, 'about_founder.html')">Founder</a>
+            <a href="#" onclick="openAbout(event, 'about_vision.html')">Vision</a>
+          </div>
+        </div>
+
+        <a href="#contact" class="btn btn-primary" onclick="scrollToSection(event,'contact')">
+          Book Intro Call
+        </a>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+
   <!-- DYNAMIC CONTENT AREA (UNDER HEADER) -->
   <section id="dynamic-content" style="display:none;">
   	<iframe
