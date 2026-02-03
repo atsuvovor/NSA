@@ -315,26 +315,42 @@
 ========================= */
 @media (max-width: 768px) {
 
+  /* Stack ROW 1 */
   .nav-top {
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
     gap: 10px;
+    text-align: center;
   }
 
-
+  /* ROW 2: center menu */
   .nav-bottom {
-    justify-content: flex-start;
+    order: 2;
+    justify-content: center;
+    width: 100%;
   }
 
   .nav-links {
-    width: 100%;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
   }
 
-    .nav-search {
+  /* Search LAST + centered */
+  .nav-search {
+    order: 3;
     width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-search input {
+    width: 90%;
+    max-width: 320px;
+    text-align: left;
   }
 }
+
 
 
     /* BUTTONS */
