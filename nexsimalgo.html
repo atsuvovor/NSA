@@ -73,6 +73,10 @@
       z-index: 100;
     }
 
+	main {
+  		padding-top: 88px; /* match header height */
+	}
+
 	.nav-container {
   		display: flex;
   	flex-direction: column;     /* 👈 ALWAYS stack */
@@ -387,7 +391,13 @@
       color:var(--primary);
       background:#f8fafc;
     }
+    /* content*/
 
+	.dynamic-content {
+  		display: none;
+  		padding-top: 88px; /* same as main */
+	}
+	  
     /* HERO */
     .hero {
       text-align:center;
@@ -815,13 +825,13 @@ p {
    DASHBOARD OVERLAY (FIXED UNDER HEADER)
 =============================================== */
 #embedded-viewer {
-  position: absolute;
+  position: relative;
   top: 72px;                 /* SAME AS HEADER HEIGHT */
   left: 0;
   width: 100%;
   height: auto;
   background: #f8fafc;
-  z-index: 999;
+  z-index: 1000;
   display: none;
   padding-bottom: 20px;
   box-sizing: border-box;
@@ -859,6 +869,11 @@ iframe::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
+
+section {
+  scroll-margin-top: 100px;
+}
+
 </style>
 </head>
 
@@ -913,11 +928,11 @@ iframe::-webkit-scrollbar {
 
 
   <!-- DYNAMIC CONTENT AREA (UNDER HEADER) -->
-  <section id="dynamic-content" style="display:none;">
+  <section id="dynamic-content" class="dynamic-content"">
   	<iframe
     	id="contentFrame"
     	src=""
-    	style="width:100%; border:none; min-height:100vh;">
+    	style="width:100%; border:none; min-height:calc(100vh - 120px);">
   	</iframe>
    </section>
 
