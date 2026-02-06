@@ -16,7 +16,7 @@
 
   <style>
     :root {
-	  --header-height:0px;
+	  --header-height: 140px;
 		
       /* PALETTE */
       --bg-body: #ffffff;
@@ -80,7 +80,6 @@
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
 	  padding-top: var(--header-height);
-	  margin: 0;
     }
     a { text-decoration: none; color: inherit; }
 
@@ -104,58 +103,10 @@
   	z-index: 1000;
   	background: rgba(255,255,255,0.9);
   	backdrop-filter: blur(12px);
-	transition: padding 0.25s ease, box-shadow 0.25s ease;
   	border-bottom: 1px solid var(--border);
-  }
-
-  header.expanded {
-     padding: 16px 24px;
-  } 
-
-  header.shrunk {
-     padding: 6px 24px;
-     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  }
-
-  /* keep logo + menu visible */
-  header .logo,
-  header nav,
-  header .search {
-     transition: transform 0.25s ease, font-size 0.25s ease;
-}
-
-header.shrunk .logo {
-  transform: scale(0.92);
-}
-
-   #site-header {
-  		position: fixed;
-  		top: 0;
-  		left: 0;
-  		width: 100%;
-  		z-index: 1000;
-
-  		background: rgba(255,255,255,0.9);
-  		backdrop-filter: blur(12px);
-
-  		transition:
-    	padding 0.25s ease,
-    	box-shadow 0.25s ease;
 	}
 
-	#site-header.expanded {
-  		padding: 16px 24px;
-	}
 
-	#site-header.shrunk {
-  		padding: 6px 24px;
-  		box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-	}	
-    #app {
-	  display: block;
-	}
-
-	  
 	.nav-container {
   		display: flex;
   	flex-direction: column;     /* 👈 ALWAYS stack */
@@ -169,7 +120,7 @@ header.shrunk .logo {
     	gap: 6px;
   		}
 	}
-    
+
 
     .brand {
       display: flex;
@@ -472,10 +423,15 @@ header.shrunk .logo {
     }
 
 	section {
-  		scroll-margin-top: var(--header-height);
+  		scroll-margin-top: 100px;
 	}
 
-  
+    /* content*/
+
+	.dynamic-content {
+  		display: none;
+	}
+	  
     /* HERO */
     .hero {
       text-align:center;
@@ -923,7 +879,23 @@ p {
   border-bottom: 1px solid var(--border);
 }
 
+/* Iframe fills remaining space */
+#contentFrame,
+#dashboardFrame {
+  width: 100%;
+  height: 80vh;
+  border: none;
+  overflow: auto;
+  scrollbar-width: none;
+}
+iframe {
+  scrollbar-width: none;
+}
 
+iframe::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 /* Chrome, Edge, Safari */
 #contentFrame::-webkit-scrollbar,
 #dashboardFrame::-webkit-scrollbar {
@@ -938,7 +910,7 @@ p {
 <body>
 
   <!-- HEADER -->
-<header id="site-header">
+<header>
   <div class="container nav-container">
 
     <!-- ROW 1 -->
@@ -962,12 +934,12 @@ p {
     <!-- ROW 2 -->
     <div class="nav-row nav-bottom">
       <div class="nav-links">
-        <a href="products.html" class="nav-item" data-spa>Products</a>
-		<a href="services.html" class="nav-item" data-spa>Services</a>
-		<a href="work.html" class="nav-item" data-spa>Work</a>
+        <a href="#" class="nav-item" onclick="openProducts(event)">Products</a>
+        <a href="#services" class="nav-item" onclick="scrollToSection(event,'services')">Services</a>
+        <a href="#work" class="nav-item" onclick="scrollToSection(event,'work')">Work</a>
 
         <div class="nav-item dropdown">
-          <a href="#" class="nav-item" onclick="toggleAbout(event)">About ▾</a>
+          <a href="#" class="nav-item">About ▾</a>
           <div class="dropdown-menu">
             <a href="#" onclick="openAbout(event, 'about_company.html')">Company</a>
             <a href="#" onclick="openAbout(event, 'about_founder.html')">Founder</a>
@@ -986,9 +958,15 @@ p {
 
 
   <!-- DYNAMIC CONTENT AREA (UNDER HEADER) -->
- 
+  <section id="dynamic-content" class="dynamic-content">
+  	<iframe
+    	id="contentFrame"
+    	src=""
+    	style="width:100%; border:none; min-height:calc(100vh - 120px);">
+  	</iframe>
+   </section>
 
-  <main id="app">
+  <main id="home-content">
     <div class="container">
       <!-- HERO -->
       <section class="hero">
@@ -1294,37 +1272,56 @@ p {
 
 <!-- SCRIPT -->
 <script>
-
+const dynamicContent = document.getElementById("dynamic-content");
+const frame = document.getElementById("contentFrame");
 const homeContent = document.getElementById("home-content");
 
-function loadDashboard(url) {
-  const viewer = document.getElementById("embedded-viewer");
-  const frame = document.getElementById("dashboardFrame");
-
-  frame.src = url;
-  viewer.style.display = "block";
-
-  // ensure dashboard starts below header
-  const headerHeight = document.getElementById("site-header").offsetHeight;
-  viewer.style.marginTop = headerHeight + "px";
-
-  window.scrollTo({
-    top: viewer.offsetTop - headerHeight,
-    behavior: "smooth"
-  });
+/* Open Products */
+function openProducts(event) {
+  event.preventDefault();
+  frame.src = "products.html";
+  dynamicContent.style.display = "block";
+  homeContent.style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function closeDashboard() {
-  const viewer = document.getElementById("embedded-viewer");
-  const frame = document.getElementById("dashboardFrame");
+/* Open Dashboard */
+function loadDashboard(page) {
+  frame.src = page;
+  dynamicContent.style.display = "block";
+  homeContent.style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+/* About */
 
-  frame.src = "";
-  viewer.style.display = "none";
+function openAbout(event, page) {
+  event.preventDefault();
+  frame.src = page;
+  dynamicContent.style.display = "block";
+  homeContent.style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 /* Restore homepage */
+function scrollToSection(event, sectionId) {
+  event.preventDefault();
+  dynamicContent.style.display = "none";
+  frame.src = "";
+  homeContent.style.display = "block";
+
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 	
+// Close overlay
+function closeDashboard() {
+  viewer.style.display = "none";
+  frame.src = "";
+  
+}
 // Copy project meta
 function copyProjectMeta() {
   const text = document.querySelector(".code-meta").innerText.trim();
@@ -1358,95 +1355,9 @@ searchInput.addEventListener("input", () => {
   }
 });
 
-
-function updateHeaderHeight() {
-  const header = document.getElementById("site-header");
-  document.documentElement.style.setProperty(
-    "--header-height",
-    header.offsetHeight + "px"
-  );
-}
-
-window.addEventListener("load", updateHeaderHeight);
-window.addEventListener("resize", updateHeaderHeight);
-
-let lastScroll = 0;
-const header = document.getElementById("site-header");
-
-window.addEventListener("scroll", () => {
-  const currentScroll = window.scrollY;
-
-  if (currentScroll > 60) {
-    header.classList.add("shrunk");
-    header.classList.remove("expanded");
-  } else {
-    header.classList.add("expanded");
-    header.classList.remove("shrunk");
-  }
-
-  updateHeaderHeight();
-});
-
-
-// intercept menu clicks
-const app = document.getElementById("app");
-
-/* Load page via fetch */
-function rebindUI() {
-  // rebind dashboard cards
-  document.querySelectorAll("[onclick]").forEach(el => {
-    const attr = el.getAttribute("onclick");
-    el.onclick = new Function(attr);
-  });
-}
-
-async function loadPage(url, push = true) {
-  const res = await fetch(url);
-  const html = await res.text();
-
-  const doc = new DOMParser().parseFromString(html, "text/html");
-  const newContent = doc.querySelector("#app");
-
-  if (!newContent) {
-    console.error("Missing #app in", url);
-    return;
-  }
-
-  app.innerHTML = newContent.innerHTML;
-  rebindUI();
-
-  if (push) {
-    history.pushState({ url }, "", url);
-  }
-
-  window.scrollTo({ top: 0, behavior: "instant" });
-}
-
-/* Intercept SPA links */
-document.addEventListener("click", e => {
-  const link = e.target.closest("a[data-spa]");
-  if (!link) return;
-
-  e.preventDefault();
-  loadPage(link.getAttribute("href"));
-});
-
-/* Back / forward support */
-window.addEventListener("popstate", e => {
-  if (e.state?.url) {
-    loadPage(e.state.url, false);
-  }
-});
-	
-function toggleAbout(e) {
-  e.preventDefault();
-  const menu = e.target.nextElementSibling;
-  menu.style.display =
-    menu.style.display === "flex" ? "none" : "flex";
-}
-
-
 </script>
+
+
 
 </body>
 </html>
