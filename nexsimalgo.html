@@ -472,7 +472,7 @@ header.shrunk .logo {
     }
 
 	section {
-  		scroll-margin-top: 100px;
+  		scroll-margin-top: var(--header-height);
 	}
 
   
@@ -967,7 +967,7 @@ p {
 		<a href="work.html" class="nav-item" data-spa>Work</a>
 
         <div class="nav-item dropdown">
-          <a href="#" class="nav-item">About ▾</a>
+          <a href="#" class="nav-item" onclick="toggleAbout(event)">About ▾</a>
           <div class="dropdown-menu">
             <a href="#" onclick="openAbout(event, 'about_company.html')">Company</a>
             <a href="#" onclick="openAbout(event, 'about_founder.html')">Founder</a>
@@ -1297,6 +1297,30 @@ p {
 
 const homeContent = document.getElementById("home-content");
 
+function loadDashboard(url) {
+  const viewer = document.getElementById("embedded-viewer");
+  const frame = document.getElementById("dashboardFrame");
+
+  frame.src = url;
+  viewer.style.display = "block";
+
+  // ensure dashboard starts below header
+  const headerHeight = document.getElementById("site-header").offsetHeight;
+  viewer.style.marginTop = headerHeight + "px";
+
+  window.scrollTo({
+    top: viewer.offsetTop - headerHeight,
+    behavior: "smooth"
+  });
+}
+
+function closeDashboard() {
+  const viewer = document.getElementById("embedded-viewer");
+  const frame = document.getElementById("dashboardFrame");
+
+  frame.src = "";
+  viewer.style.display = "none";
+}
 
 /* Restore homepage */
 
@@ -1365,18 +1389,17 @@ window.addEventListener("scroll", () => {
 
 
 // intercept menu clicks
-document.addEventListener("click", (e) => {
-  const link = e.target.closest("a[data-spa]");
-  if (!link) return;
-
-  e.preventDefault();
-  loadPage(link.getAttribute("href"));
-});
-
-
 const app = document.getElementById("app");
 
 /* Load page via fetch */
+function rebindUI() {
+  // rebind dashboard cards
+  document.querySelectorAll("[onclick]").forEach(el => {
+    const attr = el.getAttribute("onclick");
+    el.onclick = new Function(attr);
+  });
+}
+
 async function loadPage(url, push = true) {
   const res = await fetch(url);
   const html = await res.text();
@@ -1390,6 +1413,7 @@ async function loadPage(url, push = true) {
   }
 
   app.innerHTML = newContent.innerHTML;
+  rebindUI();
 
   if (push) {
     history.pushState({ url }, "", url);
@@ -1413,6 +1437,13 @@ window.addEventListener("popstate", e => {
     loadPage(e.state.url, false);
   }
 });
+	
+function toggleAbout(e) {
+  e.preventDefault();
+  const menu = e.target.nextElementSibling;
+  menu.style.display =
+    menu.style.display === "flex" ? "none" : "flex";
+}
 
 
 </script>
