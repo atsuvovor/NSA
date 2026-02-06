@@ -95,6 +95,20 @@
     }
 
     /* HEADER */
+	#site-header {
+  	position: fixed;
+  	top: 0;
+  	left: 0;
+  	width: 100%;
+  	z-index: 1000;
+  	background: white;
+	}
+
+/* main content always starts below header */
+#app {
+  padding-top: var(--header-height);
+}
+
    header {
   	position: fixed;
   	top: 0;
@@ -1293,12 +1307,28 @@ async function openProducts(event) {
 
 
 /* Open Dashboard */
-function loadDashboard(page) {
-  frame.src = page;
-  dynamicContent.style.display = "block";
-  homeContent.style.display = "none";
-  window.scrollTo({ top: 0, behavior: "smooth" });
+async function loadDashboard(page) {
+  try {
+    const response = await fetch(page);
+    if (!response.ok) throw new Error("Failed to load " + page);
+
+    const html = await response.text();
+
+    const app = document.getElementById("app");
+    app.innerHTML = html;
+
+    // scroll to top, under header
+    window.scrollTo({
+      top: 0,
+      behavior: "instant"
+    });
+
+  } catch (err) {
+    console.error(err);
+    alert("Unable to load dashboard.");
+  }
 }
+
 
 
 /* About */
