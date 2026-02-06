@@ -1278,6 +1278,7 @@ async function openProducts(event) {
   event.preventDefault();
 
   const res = await fetch("products.html");
+  if (!res.ok) return alert("Failed to load Products");
   const html = await res.text();
 
   dynamicContent.innerHTML = html;
@@ -1290,17 +1291,20 @@ async function openProducts(event) {
 
 /* Open Dashboard */
 function loadDashboard(page) {
+  const viewer = document.getElementById("embedded-viewer");
   frame.src = page;
-  dynamicContent.style.display = "block";
+  viewer.style.display = "block";
   homeContent.style.display = "none";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 /* About */
 
 async function openAbout(event, page) {
   event.preventDefault();
 
   const res = await fetch(page);
+  if (!res.ok) return alert("Failed to load corresponding page");
   const html = await res.text();
 
   dynamicContent.innerHTML = html;
@@ -1327,6 +1331,7 @@ function scrollToSection(event, sectionId) {
 	
 // Close overlay
 function closeDashboard() {
+  const viewer = document.getElementById("embedded-viewer");
   viewer.style.display = "none";
   frame.src = "";
   
@@ -1365,8 +1370,6 @@ searchInput.addEventListener("input", () => {
 });
 
 </script>
-
-
 
 </body>
 </html>
