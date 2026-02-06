@@ -1292,13 +1292,9 @@ async function openProducts(event) {
 
 /* Open Dashboard */
 function loadDashboard(page) {
-  const viewer = document.getElementById("embedded-viewer");
-  const dashboardFrame = document.getElementById("dashboardFrame");
-  
-  dashboardFrame.src = page;         // ✅ correct iframe
-  viewer.style.display = "block";
+  frame.src = page;
+  dynamicContent.style.display = "block";
   homeContent.style.display = "none";
-  dynamicContent.style.display = "none";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
