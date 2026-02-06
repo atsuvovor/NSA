@@ -430,7 +430,10 @@
 
 	.dynamic-content {
   		display: none;
+  		padding-top: 40px;
+  		min-height: calc(100vh - var(--header-height));
 	}
+
 	  
     /* HERO */
     .hero {
@@ -958,13 +961,7 @@ iframe::-webkit-scrollbar {
 
 
   <!-- DYNAMIC CONTENT AREA (UNDER HEADER) -->
-  <section id="dynamic-content" class="dynamic-content">
-  	<iframe
-    	id="contentFrame"
-    	src=""
-    	style="width:100%; border:none; min-height:calc(100vh - 120px);">
-  	</iframe>
-   </section>
+<section id="dynamic-content" class="dynamic-content container"></section>
 
   <main id="home-content">
     <div class="container">
@@ -1277,13 +1274,19 @@ const frame = document.getElementById("contentFrame");
 const homeContent = document.getElementById("home-content");
 
 /* Open Products */
-function openProducts(event) {
+async function openProducts(event) {
   event.preventDefault();
-  frame.src = "products.html";
+
+  const res = await fetch("products.html");
+  const html = await res.text();
+
+  dynamicContent.innerHTML = html;
   dynamicContent.style.display = "block";
   homeContent.style.display = "none";
+
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 
 /* Open Dashboard */
 function loadDashboard(page) {
@@ -1294,13 +1297,19 @@ function loadDashboard(page) {
 }
 /* About */
 
-function openAbout(event, page) {
+async function openAbout(event, page) {
   event.preventDefault();
-  frame.src = page;
+
+  const res = await fetch(page);
+  const html = await res.text();
+
+  dynamicContent.innerHTML = html;
   dynamicContent.style.display = "block";
   homeContent.style.display = "none";
+
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 
 /* Restore homepage */
 function scrollToSection(event, sectionId) {
