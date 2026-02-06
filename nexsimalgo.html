@@ -95,20 +95,6 @@
     }
 
     /* HEADER */
-	#site-header {
-  	position: fixed;
-  	top: 0;
-  	left: 0;
-  	width: 100%;
-  	z-index: 1000;
-  	background: white;
-	}
-
-/* main content always starts below header */
-#app {
-  padding-top: var(--header-height);
-}
-
    header {
   	position: fixed;
   	top: 0;
@@ -444,10 +430,7 @@
 
 	.dynamic-content {
   		display: none;
-  		padding-top: 40px;
-  		min-height: calc(100vh - var(--header-height));
 	}
-
 	  
     /* HERO */
     .hero {
@@ -876,19 +859,16 @@ p {
    DASHBOARD OVERLAY (FIXED UNDER HEADER)
 =============================================== */
 #embedded-viewer {
-  position: fixed;          /* fixed overlay */
-  top: var(--header-height); /* start below header */
+  position: relative;
   left: 0;
   width: 100%;
-  height: calc(100vh - var(--header-height)); /* fill remaining viewport */
+  height: auto;
   background: #f8fafc;
-  z-index: 9999;            /* above all content */
-  display: none;            /* initially hidden */
-  padding-bottom: 0;
+  z-index: 1;
+  display: none;
+  padding-bottom: 20px;
   box-sizing: border-box;
-  overflow: hidden;
 }
-
 
 /* Close button header */
 .viewer-header {
@@ -978,7 +958,13 @@ iframe::-webkit-scrollbar {
 
 
   <!-- DYNAMIC CONTENT AREA (UNDER HEADER) -->
-<section id="dynamic-content" class="dynamic-content container"></section>
+  <section id="dynamic-content" class="dynamic-content">
+  	<iframe
+    	id="contentFrame"
+    	src=""
+    	style="width:100%; border:none; min-height:calc(100vh - 120px);">
+  	</iframe>
+   </section>
 
   <main id="home-content">
     <div class="container">
@@ -1180,28 +1166,28 @@ iframe::-webkit-scrollbar {
 
     <div class="dash-grid">
 
-      <div class="dashboard-box" onclick="loadDashboard('CybersecurityKeyTerms.html')">
+      <div class="dashboard-box" onclick="loadDashboard('https://github.com/atsuvovor/NSA/blob/main/CybersecurityKeyTerms.html')">
         <img src="images/cyber_threat_key_terms.png" alt="Cybersecurity Key Terms">
         <div class="dashboard-title"><h3>Cybersecurity Key Terms</h3></div>
         <div class="dashboard-desc">Explore key terms and their contextual connections across threat intelligence documents.</div>
         <h4>Tableau</h4>
       </div>
 
-      <div class="dashboard-box" onclick="loadDashboard('NumberofFileAccessedTracker.html')">
+      <div class="dashboard-box" onclick="loadDashboard('https://github.com/atsuvovor/NSA/blob/main/NumberofFileAccessedTracker.html')">
         <img src="https://public.tableau.com/static/images/Cy/CyberThreatInsight-NumberoffileAccessDashboard/NumberofFileAccessedTracker/1.png" alt="Number of File Accessed Tracker">
         <div class="dashboard-title"><h3>Number of File Accessed Tracker</h3></div>
         <div class="dashboard-desc">Monitor abnormal spikes in file access behavior across users and systems.</div>
         <h4>Tableau</h4>
       </div>
 
-      <div class="dashboard-box" onclick="loadDashboard('LoginAttemptsAnalytics.html')">
+      <div class="dashboard-box" onclick="loadDashboard('https://github.com/atsuvovor/NSA/blob/main/LoginAttemptsAnalytics.html')">
         <img src="images/login_attenpts.png" alt="Login Attempts Analytics">
         <div class="dashboard-title"><h3>Login Attempts Analytics</h3></div>
         <div class="dashboard-desc">Analyze successful and failed login attempts to detect brute-force patterns.</div>
         <h4>Tableau</h4>
       </div>
 
-      <div class="dashboard-box" onclick="loadDashboard('ThreatInsightReporting.html')">
+      <div class="dashboard-box" onclick="loadDashboard('https://github.com/atsuvovor/NSA/blob/main/ThreatInsightReporting.html')">
         <img src="https://public.tableau.com/static/images/Cy/CyberThreatInsightDashboard/IncidentSummaryandTrends/1.png" alt="Threat Insight Reporting">
         <div class="dashboard-title"><h3>Threat Insight Reporting</h3></div>
         <div class="dashboard-desc">Review incident summaries and trend analyses for proactive security monitoring.</div>
@@ -1291,95 +1277,51 @@ const frame = document.getElementById("contentFrame");
 const homeContent = document.getElementById("home-content");
 
 /* Open Products */
-async function openProducts(event) {
+function openProducts(event) {
   event.preventDefault();
-
-  const res = await fetch("products.html");
-  if (!res.ok) return alert("Failed to load Products");
-  const html = await res.text();
-
-  dynamicContent.innerHTML = html;
+  frame.src = "products.html";
   dynamicContent.style.display = "block";
   homeContent.style.display = "none";
-
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
 
 /* Open Dashboard */
-async function loadDashboard(page) {
-  try {
-    const response = await fetch(page);
-    if (!response.ok) throw new Error("Failed to load " + page);
-
-    const html = await response.text();
-
-    const app = document.getElementById("app");
-    app.innerHTML = html;
-
-    // scroll to top, under header
-    window.scrollTo({
-      top: 0,
-      behavior: "instant"
-    });
-
-  } catch (err) {
-    console.error(err);
-    alert("Unable to load dashboard.");
-  }
-}
-
-
-
-/* About */
-
-async function openAbout(event, page) {
-  event.preventDefault();
-
-  const res = await fetch(page);
-  if (!res.ok) return alert("Failed to load corresponding page");
-  const html = await res.text();
-
-  dynamicContent.innerHTML = html;
+function loadDashboard(page) {
+  frame.src = page;
   dynamicContent.style.display = "block";
   homeContent.style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+/* About */
 
+function openAbout(event, page) {
+  event.preventDefault();
+  frame.src = page;
+  dynamicContent.style.display = "block";
+  homeContent.style.display = "none";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-
-/* Restore homepage and display menu */
+/* Restore homepage */
 function scrollToSection(event, sectionId) {
   event.preventDefault();
-
-  // Hide any overlay or dynamic content
   dynamicContent.style.display = "none";
-  const viewer = document.getElementById("embedded-viewer");
-  viewer.style.display = "none";
-
-  // Show homepage content
+  frame.src = "";
   homeContent.style.display = "block";
 
-  // Small delay to ensure layout is updated
-  setTimeout(() => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, 100); // increased delay to 100ms for reliability
+  const section = document.getElementById(sectionId);
+  if (section) {
+    section.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
-
 
 	
 // Close overlay
 function closeDashboard() {
-  const viewer = document.getElementById("embedded-viewer");
-  const dashboardFrame = document.getElementById("dashboardFrame");
-
   viewer.style.display = "none";
-  dashboardFrame.src = "";
+  frame.src = "";
+  
 }
-	
 // Copy project meta
 function copyProjectMeta() {
   const text = document.querySelector(".code-meta").innerText.trim();
@@ -1414,6 +1356,8 @@ searchInput.addEventListener("input", () => {
 });
 
 </script>
+
+
 
 </body>
 </html>
