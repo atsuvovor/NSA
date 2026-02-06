@@ -1292,11 +1292,15 @@ async function openProducts(event) {
 /* Open Dashboard */
 function loadDashboard(page) {
   const viewer = document.getElementById("embedded-viewer");
-  frame.src = page;
+  const dashboardFrame = document.getElementById("dashboardFrame");
+  
+  dashboardFrame.src = page;         // ✅ correct iframe
   viewer.style.display = "block";
   homeContent.style.display = "none";
+  dynamicContent.style.display = "none";
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
+
 
 /* About */
 
@@ -1318,24 +1322,30 @@ async function openAbout(event, page) {
 /* Restore homepage */
 function scrollToSection(event, sectionId) {
   event.preventDefault();
+
   dynamicContent.style.display = "none";
   frame.src = "";
   homeContent.style.display = "block";
 
-  const section = document.getElementById(sectionId);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  // Wait a tick so layout updates
+  setTimeout(() => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, 50);
 }
 
 	
 // Close overlay
 function closeDashboard() {
   const viewer = document.getElementById("embedded-viewer");
+  const dashboardFrame = document.getElementById("dashboardFrame");
+
   viewer.style.display = "none";
-  frame.src = "";
-  
+  dashboardFrame.src = "";
 }
+	
 // Copy project meta
 function copyProjectMeta() {
   const text = document.querySelector(".code-meta").innerText.trim();
