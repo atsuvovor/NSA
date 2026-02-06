@@ -1319,22 +1319,27 @@ async function openAbout(event, page) {
 }
 
 
-/* Restore homepage */
+/* Restore homepage and display menu */
 function scrollToSection(event, sectionId) {
   event.preventDefault();
 
+  // Hide any overlay or dynamic content
   dynamicContent.style.display = "none";
-  frame.src = "";
+  const viewer = document.getElementById("embedded-viewer");
+  viewer.style.display = "none";
+
+  // Show homepage content
   homeContent.style.display = "block";
 
-  // Wait a tick so layout updates
+  // Small delay to ensure layout is updated
   setTimeout(() => {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-  }, 50);
+  }, 100); // increased delay to 100ms for reliability
 }
+
 
 	
 // Close overlay
